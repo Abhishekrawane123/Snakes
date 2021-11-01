@@ -13,12 +13,12 @@ public class SnakesandLadders
 		int optionCheck;
 		while(position<100)
 		{
-			dieCheck = ((int) ((Math.random())*10)%6)+1;
+			dieCheck = ((int) ((Math.random())*10)%6);
 			optionCheck =(int) ((Math.random())*10)%3;
 			switch(optionCheck)
 			{
 			case NO_PLAY:
-				position=position;
+				
 				break;
 			case LADDER:
 				position=position+dieCheck;
