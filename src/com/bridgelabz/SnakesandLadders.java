@@ -5,33 +5,54 @@ public class SnakesandLadders
 	public static final int NO_PLAY = 0;
 	public static final int LADDER = 1;
 	public static final int SNAKE = 2;
+	public static final int LOWER_LIMIT = 0;
+	public static final int UPPER_LIMIT = 100;
 	
 	public static void main(String[] args)
 	{
 		int position = 0;
 		int dieCheck;
 		int optionCheck;
-		while(position<100)
+		int roll=0;
+		while(position<UPPER_LIMIT)
 		{
-			dieCheck = ((int) ((Math.random())*10)%6);
+			roll=roll+1;
+			dieCheck = ((int)((Math.random())*10)%6)+1;
 			optionCheck =(int) ((Math.random())*10)%3;
+			//dieCheck=5;
+			//optionCheck=1;
 			switch(optionCheck)
 			{
 			case NO_PLAY:
-				
+			
 				break;
 			case LADDER:
-				position=position+dieCheck;
+				if((position+dieCheck)>UPPER_LIMIT)
+				{
+					
+				}
+				else
+				{
+					position=position+dieCheck;
+				}
 				break;
+				
 			default:
-				position=position-dieCheck;
-				if(position<=0)
+				
+				if((position-dieCheck)<=LOWER_LIMIT)
 				{
 					position=0;
 				}
+				else
+				{
+					position=position-dieCheck;
+				}
+				break;
 			}
-		}
-		System.out.println("The Position is: "+position);
+			System.out.println("No.of Times Die Rolles: "+roll);
+			System.out.println("Dice Number: "+dieCheck);
+			System.out.println("Option :"+optionCheck);
+			System.out.println("The Position is: "+position);
+		}		
 	}
-
 }
