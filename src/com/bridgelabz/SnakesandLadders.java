@@ -8,51 +8,140 @@ public class SnakesandLadders
 	public static final int LOWER_LIMIT = 0;
 	public static final int UPPER_LIMIT = 100;
 	
-	public static void main(String[] args)
+	int position1 = 0;
+	int dieCheck1;
+	int optionCheck1;
+	int roll1 = 0;
+	
+	int position2 = 0;
+	int dieCheck2;
+	int optionCheck2;
+	int roll2 = 0;
+	
+	public void player1()
 	{
-		int position = 0;
-		int dieCheck;
-		int optionCheck;
-		int roll=0;
-		while(position<UPPER_LIMIT)
-		{
-			roll=roll+1;
-			dieCheck = ((int)((Math.random())*10)%6)+1;
-			optionCheck =(int) ((Math.random())*10)%3;
-			//dieCheck=5;
-			//optionCheck=1;
-			switch(optionCheck)
+			roll1=roll1+1;
+			dieCheck1 = ((int)((Math.random())*10)%6)+1;
+			optionCheck1 =(int) ((Math.random())*10)%3;
+			switch(optionCheck1)
 			{
 			case NO_PLAY:
-			
+				position1=position1;
 				break;
 			case LADDER:
-				if((position+dieCheck)>UPPER_LIMIT)
+				if((position1+dieCheck1)>UPPER_LIMIT)
 				{
-					
+					position1=position1;
 				}
 				else
 				{
-					position=position+dieCheck;
+					position1=position1+dieCheck1;
 				}
 				break;
 				
 			default:
 				
-				if((position-dieCheck)<=LOWER_LIMIT)
+				if((position1-dieCheck1)<=LOWER_LIMIT)
 				{
-					position=0;
+					position1=0;
 				}
 				else
 				{
-					position=position-dieCheck;
+					position1=position1-dieCheck1;
 				}
 				break;
 			}
-			System.out.println("No.of Times Die Rolles: "+roll);
-			System.out.println("Dice Number: "+dieCheck);
-			System.out.println("Option :"+optionCheck);
-			System.out.println("The Position is: "+position);
-		}		
+			System.out.println("$$$$$$$$$$ PLAYER 1 $$$$$$$$$$");
+			System.out.println("Dice Number of Player1: "+dieCheck1);
+			System.out.println("No.of Times Die Rolles by Player1: "+roll1);
+			System.out.println("Option for Player1: "+optionCheck1);
+			System.out.println("The Position of Player1 is: "+position1);
+			System.out.println(" ");
+	}
+	public void player2()
+	{
+		roll2=roll2+1;
+		dieCheck2 = ((int)((Math.random())*10)%6)+1;
+		optionCheck2 =(int) ((Math.random())*10)%3;
+		switch(optionCheck2)
+		{
+		case NO_PLAY:
+			position2=position2;
+			break;
+		case LADDER:
+			if((position2+dieCheck2)>UPPER_LIMIT)
+			{
+				position2=position2;
+			}
+			else
+			{
+				position2=position2+dieCheck2;
+			}
+			break;
+			
+		default:
+			
+			if((position2-dieCheck2)<=LOWER_LIMIT)
+			{
+				position2=0;
+			}
+			else
+			{
+				position2=position2-dieCheck2;
+			}
+			break;
+		}
+		System.out.println("$$$$$$$$$$ PLAYER 2 $$$$$$$$$$");
+		System.out.println("Dice Number of Player2: "+dieCheck2);
+		System.out.println("No.of Times Die Rolles by Player2: "+roll2);
+		System.out.println("Option for Player2: "+optionCheck2);
+		System.out.println("The Position of Player2 is: "+position2);
+		System.out.println(" ");
+	}
+	public void winner1()
+	{
+		if(position1==UPPER_LIMIT)
+		{
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			System.out.println("Player 1 is the Winner");
+			System.out.println("No.of Times Die Rolles by Player1: "+roll1);
+			System.out.println("The Position of Player1 is: "+position1);
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		}
+	}
+	public void winner2()
+	{
+		if(position2==UPPER_LIMIT)
+		{
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			System.out.println("Player 2 is the Winner");
+			System.out.println("No.of Times Die Rolles by Player2: "+roll2);
+			System.out.println("The Position of Player2 is: "+position2);
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			System.out.println(" ");
+		}
+	}
+	
+	
+	public static void main(String[] args) 
+	{
+		SnakesandLadders obj1 = new SnakesandLadders();
+		while((obj1.position1<UPPER_LIMIT) && (obj1.position2<UPPER_LIMIT))
+		{
+			obj1.player1();
+			obj1.winner1();
+			while(obj1.dieCheck1==6)
+			{
+				obj1.player1();
+				obj1.winner1();
+			}
+			obj1.player2();
+			obj1.winner2();
+			while(obj1.dieCheck2==6)
+			{
+				obj1.player2();
+				obj1.winner2();
+			}
+		}	
 	}
 }
